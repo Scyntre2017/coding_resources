@@ -2,4 +2,4 @@
 
 require_relative "../lib/coding_resources.rb"
 
-CodingResources::CLI.new.call
+CodingResources::CLI.new.run
