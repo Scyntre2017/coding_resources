@@ -6,6 +6,27 @@ class CodingResources::CLI
 
   def menu
     puts "Welcome to Coding Resources"
+    puts "Please type 'list' for a list of books or type 'search' to search for a book or type 'exit' to exit."
+    input = gets.strip.downcase
+    if input == "list"
+      list
+    elsif input == "search"
+      search
+    elsif input == "exit"
+      puts "Have a nice day!"
+    end
+  end
+
+  def list
+    puts "Books 1-25"
+    # lists books in groups of 25 books each by grabbing data from the book_list class
+    # type 'next' to get to the next group
+    puts "Please type the number of the book for more information or type next for the next 25 books."
+  end
+
+  def search
+    puts "Please enter the name of the book or part of the name."
+    # searches for books from the book_list class
   end
 
 end
