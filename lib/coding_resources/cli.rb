@@ -1,7 +1,11 @@
 class CodingResources::CLI
 
   def run
-    puts "Hello"
+    menu
+  end
+
+  def menu
+    puts "Welcome to Coding Resources"
   end
 
 end
