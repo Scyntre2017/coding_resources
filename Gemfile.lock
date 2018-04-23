@@ -3,6 +3,7 @@ PATH
   specs:
     coding_resources (0.1.0)
       nokogiri
+      require_all
 
 GEM
   remote: https://rubygems.org/
@@ -66,7 +67,6 @@ DEPENDENCIES
   cucumber
   pry
   rake (~> 10.0)
-  require_all
 
 BUNDLED WITH
    1.16.1
