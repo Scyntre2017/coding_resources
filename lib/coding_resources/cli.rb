@@ -11,14 +11,16 @@ class CodingResources::CLI
     if input == "list"
       list
     elsif input == "search"
-      search
+      puts "Please enter the name of the book or part of the name to search for."
+      i = gets.strip.downcase
+      search(i)
     elsif input == "exit"
       puts "Have a nice day!"
     end
   end
 
   def list
-    CodingResources::Books.list
+    CodingResources::Books.all
     # lists books in groups of 25 books each by grabbing data from the book_list class
     # type 'next' to get to the next group
     puts "Please type the number of the book for more information or type next for the next 25 books."
@@ -26,8 +28,7 @@ class CodingResources::CLI
     details(input)
   end
 
-  def search
-    puts "Please enter the name of the book or part of the name to search for."
+  def search(name)
     # searches for books from the book_list class
   end
 

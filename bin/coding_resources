@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
-require "require_all"
-require_relative "../lib/coding_resources/version.rb"
-require_all "lib"
+
+require "bundler/setup"
+require "coding_resources"
 
 CodingResources::CLI.new.run
