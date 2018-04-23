@@ -1,7 +1,7 @@
 class CodingResources::Books
 
-  def list
-
+  def self.list
+    puts "hello"
   end
 
 end
