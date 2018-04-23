@@ -18,7 +18,7 @@ class CodingResources::CLI
   end
 
   def list
-    puts "Books 1-25"
+    CodingResources::Books.list
     # lists books in groups of 25 books each by grabbing data from the book_list class
     # type 'next' to get to the next group
     puts "Please type the number of the book for more information or type next for the next 25 books."
