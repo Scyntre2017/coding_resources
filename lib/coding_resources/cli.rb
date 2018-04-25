@@ -23,7 +23,7 @@ class CodingResources::CLI
     puts "Please type the number of the book for more information or type next for the next 25 books."
     input = gets.strip
     if input.to_i > 0
-      details(input)
+      details(input.to_i - 1)
     elsif input.downcase == "next"
       next_page
     elsif input.downcase == "menu"
@@ -42,7 +42,7 @@ class CodingResources::CLI
     # type 'next' to get to the next group
     selection
     input = gets.strip.to_i
-    details(input)
+    details(input.to_i - 1)
   end
 
   def search(name)
@@ -51,6 +51,15 @@ class CodingResources::CLI
 
   def details(number)
     puts "book details #{number}"
+    puts "Please type 'back' or 'list' to go back to the list; type 'menu' to go back to the main menu; or type 'exit' to exit."
+    input = gets.strip.downcase
+    if input == "back" || input == "list"
+      list
+    elsif input == "menu"
+      menu
+    elsif input == "exit"
+      exit
+    end
   end
 
 end
