@@ -30,6 +30,7 @@ class CodingResources::CLI
       CodingResources::Books.next_page
       list
     elsif input.downcase == "search"
+      puts "Please enter the name of the book you are searching for."
       i = gets.strip.downcase
       search(i)
     elsif input.downcase == "exit"
@@ -57,8 +58,9 @@ class CodingResources::CLI
     if input == "back" || input == "list"
       list
     elsif input == "search"
+      puts "Please enter the name of the book you are searching for."
       i = gets.strip.downcase
-      seach(i)
+      search(i)
     elsif input == "exit"
       exit
     end
