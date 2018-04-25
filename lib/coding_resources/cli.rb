@@ -19,11 +19,28 @@ class CodingResources::CLI
     end
   end
 
+  def selection
+    puts "Please type the number of the book for more information or type next for the next 25 books."
+    input = gets.strip
+    if input.to_i > 0
+      details(input)
+    elsif input.downcase == "next"
+      next_page
+    elsif input.downcase == "menu"
+      menu
+    elsif input.downcase == "exit"
+      exit
+    else
+      puts "That was an invalid entry."
+      selection
+    end
+  end
+
   def list
-    CodingResources::Books.list
+    puts CodingResources::Books.list
     # lists books in groups of 25 books each by grabbing data from the book_list class
     # type 'next' to get to the next group
-    puts "Please type the number of the book for more information or type next for the next 25 books."
+    selection
     input = gets.strip.to_i
     details(input)
   end
