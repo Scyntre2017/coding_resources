@@ -7,6 +7,7 @@ class CodingResources::Books
   def initialize(book_hash)
     @name = book_hash.values_at(:name).join
     @desc_url = book_hash.values_at(:desc_url).join
+    @short_desc = book_hash.values_at(:short_desc).join
     @@all << self unless CodingResources::Books.find_by_name(self.name)
   end
 
@@ -45,6 +46,14 @@ class CodingResources::Books
 
   def self.find_by_name(name)
     self.all.detect { |i| i.name == name  }
+  end
+
+  def self.pages
+    #should split books into multiple arrays with 25 books in each array based on either all books or searched books.
+  end
+
+  def self.cycle_pages
+    #should cycle through the arrays of books created by the pages method.
   end
 
 end
