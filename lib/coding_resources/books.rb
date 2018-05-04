@@ -3,6 +3,7 @@ class CodingResources::Books
   attr_accessor :name, :desc_url, :short_desc, :long_desc, :book_url
 
   @@all = []
+  @@pages = []
 
   def initialize(book_hash)
     @name = book_hash.values_at(:name).join
@@ -30,6 +31,7 @@ class CodingResources::Books
   end
 
   def self.search(name)
+    #should search through all books in order to find books that match the search.
     puts "method is working #{name}"
   end
 

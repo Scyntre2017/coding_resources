@@ -5,11 +5,11 @@ class CodingResources::CLI
   end
 
   def menu
+    CodingResources::Books.all_books
     puts "Welcome to Coding Resources"
     puts "Please type 'list' for a list of all available books or type 'search' to search for a book or type 'exit' to exit."
     input = gets.strip.downcase
     if input == "list"
-      CodingResources::Books.all_books
       list
     elsif input == "search"
       puts "Please enter the name of the book or part of the name to search for."
