@@ -7,7 +7,7 @@ class CodingResources::Books
   def initialize(book_hash)
     @name = book_hash.values_at(:name).join
     @desc_url = book_hash.values_at(:desc_url).join
-    @@all << self #unless CodingResources::Books.find_by_name(self.name)
+    @@all << self unless CodingResources::Books.find_by_name(self.name)
   end
 
   def self.all
@@ -30,6 +30,10 @@ class CodingResources::Books
     self.all.each.with_index(1) do |book, i|
       puts "#{i}. #{book.name}"
     end
+  end
+
+  def self.find_by_name(name)
+    self.all.detect { |i| i.name == name  }
   end
 
 end
