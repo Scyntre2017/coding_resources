@@ -10,6 +10,10 @@ class CodingResources::Books
     @@all << self unless CodingResources::Books.find_by_name(self.name)
   end
 
+  def self.create_from_collection(book_array)
+    book_array.each { |book| self.new(book)  }
+  end
+
   def self.all
     @@all
   end
