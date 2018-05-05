@@ -1,7 +1,14 @@
 class CodingResources::Scraper
 
   def self.scrape_all_books
-    puts "I scrape all books"
+    page = 0
+    books = []
+    while page < 82
+      doc = Nokogiri::HTML(open("http://www.freetechbooks.com/topics?page=#{page++}"))
+      binding.pry
+    end
+
+    books
   end
 
   def self.scrape_book_details(url)
