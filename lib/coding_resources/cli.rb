@@ -5,7 +5,7 @@ class CodingResources::CLI
   end
 
   def menu
-    CodingResources::Books.all_books
+    CodingResources::Books.create_all_books
     puts "Welcome to Coding Resources"
     puts "Please type 'list' for a list of all available books or type 'search' to search for a book or type 'exit' to exit."
     input = gets.strip.downcase
@@ -22,7 +22,8 @@ class CodingResources::CLI
   end
 
   def selection
-    puts "Please type the number of the book for more information, type 'next' for the next 25 books, or type 'search' to search for a book."
+    puts "Please type the number of the book for more information or type 'next' for the next 15 books."
+    #or type 'search' to search for a book.
     input = gets.strip
     if input.to_i > 0
       details(input.to_i - 1)
@@ -46,13 +47,14 @@ class CodingResources::CLI
     selection
   end
 
-  def search(name)
-    CodingResources::Books.search(name)
-    list
-  end
+  #def search(name)
+  #  CodingResources::Books.search(name)
+  #  list
+  #end
 
   def details(number)
-    puts "book details #{number}"
+    book = CodingResources::Books.cycle_pages[number]
+    book.details
     puts "Please type 'back' or 'list' to go back to the list; type 'search' to search for a new book; or type 'exit' to exit."
     input = gets.strip.downcase
     if input == "back" || input == "list"
