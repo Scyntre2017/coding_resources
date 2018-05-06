@@ -7,15 +7,11 @@ class CodingResources::Scraper
       page += 1
       doc = Nokogiri::HTML(open("http://www.freetechbooks.com/topics?page=#{page}"))
       doc.css(".media-body").each do |book|
-        binding.pry
         name = book.css("p.media-heading").text
         desc_url = book.css("a").first.attribute("href").value
-        short_desc = book.text (/[^rnt\\]+[a-zA-Z\d.:]+/)
-        # take off the end of the text (/(Publisher).+$/)
-        # take off the beginning of the text (/^.+\d{4}\s/)
-        books << {name: name, desc_url: desc_url}
+        short_desc = book.text.gsub("\r", "").gsub("\n", "").gsub("\t", "").gsub(/(Publisher).+$/, "").gsub(/^.+\d{4}/, "")
+        books << {name: name, desc_url: desc_url, short_desc: short_desc}
       end
-      binding.pry
     end
 
     books
