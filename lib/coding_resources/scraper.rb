@@ -6,9 +6,11 @@ class CodingResources::Scraper
     while page < 82
       page += 1
       doc = Nokogiri::HTML(open("http://www.freetechbooks.com/topics?page=#{page}"))
-      doc.css("p.media-heading").each do |book|
-        desc_url = book.css("a").attribute("href").value
-        name = book.text
+      doc.css(".media-body").each do |book|
+        binding.pry
+        name = book.css("p.media-heading").text
+        desc_url = book.css("a").first.attribute("href").value
+        short_desc = book.text (/[^rnt\\]+[a-zA-Z\d.:]+/)
         books << {name: name, desc_url: desc_url}
       end
       binding.pry
