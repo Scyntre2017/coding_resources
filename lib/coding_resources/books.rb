@@ -36,9 +36,14 @@ class CodingResources::Books
     @@pages.clear
   end
 
+  def self.create_pages
+    self.pages = self.all.each_slice(3).to_a
+  end
+
   def self.create_all_books
     book_array = CodingResources::Scraper.scrape_all_books
     self.create_from_collection(book_array)
+    self.create_pages
   end
 
   def self.search(name)
@@ -46,10 +51,8 @@ class CodingResources::Books
     puts "method is working #{name}"
   end
 
-  def self.list
-    self.pages = self.all.each_slice((self.all.size/5.to_f).round).to_a
-    #should return 25 books at a time until all books have been returned
-    self.all.each.with_index(1) do |book, i|
+  def self.list(page)
+    self.pages[page].each.with_index(1) do |book, i|
       puts "#{i}. #{book.name}"
       puts "#{book.short_desc}"
     end
@@ -57,10 +60,6 @@ class CodingResources::Books
 
   def self.find_by_name(name)
     self.all.detect { |i| i.name == name  }
-  end
-
-  def self.next_page
-    #should cycle through the arrays of books created by the pages method.
   end
 
   def details

@@ -21,30 +21,32 @@ class CodingResources::CLI
     end
   end
 
-  def selection
-    puts "Please type the number of the book for more information or type 'next' for the next 15 books."
-    #or type 'search' to search for a book.
-    input = gets.strip
-    if input.to_i > 0
-      details(input.to_i - 1)
-    elsif input.downcase == "next"
-      CodingResources::Books.next_page
-      list
-    elsif input.downcase == "search"
-      puts "Please enter the name of the book you are searching for."
-      i = gets.strip.downcase
-      search(i)
-    elsif input.downcase == "exit"
-      exit
-    else
-      puts "That was an invalid entry."
-      selection
-    end
-  end
-
   def list
-    puts CodingResources::Books.list
-    selection
+    n = 0
+    while n >= 0 && n <= CodingResources::Books.length
+
+      CodingResources::Books.list[n]
+      puts "Please type the number of the book for more information or type 'next' for the next 15 books."
+      #or type 'search' to search for a book.
+      input = gets.strip
+      if input.to_i > 0
+        details(input.to_i - 1)
+      elsif input.downcase == "next"
+        n += 1
+      elsif input.downcase == "back"
+        n -= 1
+      elsif input.downcase == "search"
+        puts "Please enter the name of the book you are searching for."
+        i = gets.strip.downcase
+        search(i)
+        list(0)
+      elsif input.downcase == "exit"
+        exit
+      else
+        puts "That was an invalid entry."
+      end
+
+    end
   end
 
   #def search(name)
