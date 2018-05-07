@@ -20,8 +20,20 @@ class CodingResources::Books
     @@all
   end
 
-  def self.clear
+  def self.all_clear
     @@all.clear
+  end
+
+  def self.pages
+    @@pages
+  end
+
+  def self.pages=(pages)
+    @@pages = pages
+  end
+
+  def self.pages_clear
+    @@pages.clear
   end
 
   def self.create_all_books
@@ -35,6 +47,7 @@ class CodingResources::Books
   end
 
   def self.list
+    self.pages = self.all.each_slice((self.all.size/5.to_f).round).to_a
     #should return 25 books at a time until all books have been returned
     self.all.each.with_index(1) do |book, i|
       puts "#{i}. #{book.name}"
