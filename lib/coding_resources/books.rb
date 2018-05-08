@@ -36,14 +36,16 @@ class CodingResources::Books
     @@pages.clear
   end
 
-  def self.create_pages
-    self.pages = self.all.each_slice(3).to_a
+  def self.create_pages(books)
+    if books == "all_books"
+      self.pages = self.all.each_slice(3).to_a
+    end
   end
 
   def self.create_all_books
     book_array = CodingResources::Scraper.scrape_all_books
     self.create_from_collection(book_array)
-    self.create_pages
+    self.create_pages("all_books")
   end
 
   def self.search(name)
@@ -52,6 +54,9 @@ class CodingResources::Books
   end
 
   def self.list(page)
+    puts ""
+    puts "Page #{page + 1}"
+    puts ""
     self.pages[page].each.with_index(1) do |book, i|
       puts "#{i}. #{book.name}"
       puts "#{book.short_desc}"

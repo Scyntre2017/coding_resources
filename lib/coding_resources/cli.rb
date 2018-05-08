@@ -1,5 +1,7 @@
 class CodingResources::CLI
 
+@@page = 0
+
   def run
     menu
   end
@@ -22,27 +24,40 @@ class CodingResources::CLI
   end
 
   def list
-    n = 0
-    while n >= 0 && n <= CodingResources::Books.length
+    while @@page >= 0 && @@page <= CodingResources::Books.pages.length
+      CodingResources::Books.list(@@page)
 
-      CodingResources::Books.list[n]
-      puts "Please type the number of the book for more information or type 'next' for the next 15 books."
-      #or type 'search' to search for a book.
-      input = gets.strip
-      if input.to_i > 0
-        details(input.to_i - 1)
-      elsif input.downcase == "next"
-        n += 1
-      elsif input.downcase == "back"
-        n -= 1
-      elsif input.downcase == "search"
-        puts "Please enter the name of the book you are searching for."
-        i = gets.strip.downcase
-        search(i)
-        list(0)
-      elsif input.downcase == "exit"
+      puts ""
+
+      puts "Please select an option:"
+      puts "1. Get more details on a book."
+      puts "2. Go to the next page of 15 books."
+      puts "3. Go back one page."
+      puts "4. Go to a specific page."
+      puts "5. Search for a book."
+      puts "6. Exit"
+      puts ""
+
+      input = gets.strip.to_i
+
+      case input
+      when 1
+        details
+        break
+      when 2
+        @@page += 1
+      when 3
+        @@page -= 1
+      when 4
+        puts "Please enter 1-#{CodingResources::Books.pages.length} to go to that specific page."
+        i = gets.strip.to_i
+        @@page = i - 1
+      when 5
+        search
+        break
+      when 6
         exit
-      else
+      when input > 6 || input < 1
         puts "That was an invalid entry."
       end
 
@@ -50,21 +65,31 @@ class CodingResources::CLI
   end
 
   #def search(name)
-  #  CodingResources::Books.search(name)
+  #  puts "Please enter the name of the book you are searching for."
+  #  input = gets.strip.downcase
+  #  CodingResources::Books.search(input)
+  #  @@page = 0
   #  list
   #end
 
-  def details(number)
-    book = CodingResources::Books.cycle_pages[number]
+  def details
+    puts "Please type the number of the book you would like more information on."
+
+    puts ""
+    input = gets.strip.to_i
+    puts ""
+
+    book = CodingResources::Books.pages[@@page][input]
     book.details
+
+    puts ""
     puts "Please type 'back' or 'list' to go back to the list; type 'search' to search for a new book; or type 'exit' to exit."
-    input = gets.strip.downcase
-    if input == "back" || input == "list"
+    puts ""
+    i = gets.strip.downcase
+    if i == "back" || i == "list"
       list
     elsif input == "search"
-      puts "Please enter the name of the book you are searching for."
-      i = gets.strip.downcase
-      search(i)
+      search
     elsif input == "exit"
       exit
     end
