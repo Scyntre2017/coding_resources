@@ -64,7 +64,8 @@ class CodingResources::Books
   def self.search(name)
     self.searched_books_clear
     self.all.each do |book|
-      @@searched_books << book if book.name.downcase.split.include?(name)
+      binding.pry
+      @@searched_books << book if book.name.downcase.split(":").join.split(",").join.split.include?(name)
     end
     self.create_pages("search")
   end
@@ -76,7 +77,6 @@ class CodingResources::Books
     if self.pages[page] == nil
       puts "No reults found."
     else
-      binding.pry
       self.pages[page].each.with_index(1) do |book, i|
         puts "#{i}. #{book.name}"
         puts "#{book.short_desc}"

@@ -12,7 +12,7 @@ class CodingResources::CLI
     puts "Please select an option"
     puts "1. List all books."
     puts "2. Search for a book."
-    puts "3. exit"
+    puts "3. Exit."
     puts ""
     input = gets.strip.to_i
     if input > 0
@@ -71,7 +71,10 @@ class CodingResources::CLI
         end
       end
     else
+      puts ""
+      puts "No results found."
       puts "Going back to the main menu"
+      puts ""
       menu
     end
   end
