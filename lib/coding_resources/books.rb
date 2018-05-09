@@ -4,6 +4,7 @@ class CodingResources::Books
 
   @@all = []
   @@pages = []
+  @@searched_books = []
 
   def initialize(book_hash)
     @name = book_hash.values_at(:name).join
@@ -24,6 +25,14 @@ class CodingResources::Books
     @@all.clear
   end
 
+  def self.searched_books
+    @@searched_books
+  end
+
+  def self.searched_books_clear
+    @@searched_books.clear
+  end
+
   def self.pages
     @@pages
   end
@@ -38,7 +47,11 @@ class CodingResources::Books
 
   def self.create_pages(books)
     if books == "all_books"
+      self.pages_clear
       self.pages = self.all.each_slice(3).to_a
+    elsif books == "search"
+      self.pages_clear
+      self.pages = self.searched_books.each_slice(3).to_a
     end
   end
 
@@ -49,8 +62,11 @@ class CodingResources::Books
   end
 
   def self.search(name)
-    #should search through all books in order to find books that match the search.
-    puts "method is working #{name}"
+    self.searched_books_clear
+    self.all.each do |book|
+      @@searched_books << book if book.name.downcase.split.include?(name)
+    end
+    self.create_pages("search")
   end
 
   def self.list(page)
@@ -71,6 +87,8 @@ class CodingResources::Books
     info = CodingResources::Scraper.scrape_book_details(self.desc_url)
     self.long_desc = info.values_at(:long_desc).join
     self.book_url = info.values_at(:book_url).join
+    puts "#{book.long_desc}"
+    puts "To download the book please go to this website: #{book.book_url}"
   end
 
 end

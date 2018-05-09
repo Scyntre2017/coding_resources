@@ -14,9 +14,7 @@ class CodingResources::CLI
     if input == "list"
       list
     elsif input == "search"
-      puts "Please enter the name of the book or part of the name to search for."
-      i = gets.strip.downcase
-      search(i)
+      search
     elsif input == "exit"
       puts "Have a nice day!"
       exit
@@ -64,13 +62,13 @@ class CodingResources::CLI
     end
   end
 
-  #def search(name)
-  #  puts "Please enter the name of the book you are searching for."
-  #  input = gets.strip.downcase
-  #  CodingResources::Books.search(input)
-  #  @@page = 0
-  #  list
-  #end
+  def search
+    puts "Please enter the name or part of the name of the book you are searching for."
+    input = gets.strip.downcase
+    CodingResources::Books.search(input)
+    @@page = 0
+    list
+  end
 
   def details
     puts "Please type the number of the book you would like more information on."
