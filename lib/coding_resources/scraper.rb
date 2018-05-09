@@ -5,7 +5,7 @@ class CodingResources::Scraper
     books = []
     while page < 82
       page += 1
-      doc = Nokogiri::HTML(open("http://www.freetechbooks.com/topics?page=1"))
+      doc = Nokogiri::HTML(open("http://www.freetechbooks.com/topics?page=#{page}"))
       doc.css(".media-body").each do |book|
         name = book.css("p.media-heading").text
         desc_url = book.css("a").first.attribute("href").value

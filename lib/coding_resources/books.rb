@@ -47,10 +47,10 @@ class CodingResources::Books
   def self.create_pages(books)
     if books == "all_books"
       self.pages_clear
-      self.pages = self.all.each_slice(3).to_a
+      self.pages = self.all.each_slice(15).to_a
     elsif books == "search"
       self.pages_clear
-      self.pages = self.searched_books.each_slice(3).to_a
+      self.pages = self.searched_books.each_slice(15).to_a
     end
   end
 
