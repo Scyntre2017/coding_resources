@@ -1,6 +1,6 @@
 class CodingResources::Books
 
-  attr_accessor :name, :desc_url, :short_desc, :long_desc, :book_url
+  attr_accessor :name, :desc_url, :description, :book_url
 
   @@all = []
   @@pages = []
@@ -9,7 +9,6 @@ class CodingResources::Books
   def initialize(book_hash)
     @name = book_hash.values_at(:name).join
     @desc_url = book_hash.values_at(:desc_url).join
-    @short_desc = book_hash.values_at(:short_desc).join
     @@all << self unless CodingResources::Books.find_by_name(self.name)
   end
 
@@ -64,7 +63,6 @@ class CodingResources::Books
   def self.search(name)
     self.searched_books_clear
     self.all.each do |book|
-      binding.pry
       @@searched_books << book if book.name.downcase.split(":").join.split(",").join.split.include?(name)
     end
     self.create_pages("search")
@@ -79,7 +77,6 @@ class CodingResources::Books
     else
       self.pages[page].each.with_index(1) do |book, i|
         puts "#{i}. #{book.name}"
-        puts "#{book.short_desc}"
       end
     end
   end
@@ -90,9 +87,10 @@ class CodingResources::Books
 
   def details
     info = CodingResources::Scraper.scrape_book_details(self.desc_url)
-    self.long_desc = info.values_at(:long_desc).join
+    self.description = info.values_at(:description).join
     self.book_url = info.values_at(:book_url).join
-    puts "#{self.long_desc}"
+    puts "#{self.description}"
+    puts ""
     puts "To download the book please go to this website: #{self.book_url}"
   end
 
