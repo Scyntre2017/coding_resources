@@ -103,7 +103,7 @@ class CodingResources::CLI
       puts "Please select an option:"
       puts "1. Go back to the list of books."
       puts "2. Search for a new book."
-      puts "3. exit"
+      puts "3. Exit"
       puts ""
       i = gets.strip.to_i
       if i > 0
