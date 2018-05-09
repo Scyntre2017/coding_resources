@@ -18,7 +18,11 @@ class CodingResources::Scraper
   end
 
   def self.scrape_book_details(url)
-    puts "I scrape book details"
+    details = {}
+    doc = Nokogiri::HTML(open(url))
+    details[:long_desc] = doc.css("blockquote").text
+    details[:book_url] = doc.css("#srvata-content a").attribute("href").value
+    details
   end
 
 end

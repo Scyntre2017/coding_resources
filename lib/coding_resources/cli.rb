@@ -79,7 +79,7 @@ class CodingResources::CLI
     input = gets.strip.to_i
     puts ""
 
-    book = CodingResources::Books.pages[@@page][input]
+    book = CodingResources::Books.pages[@@page][input - 1]
     book.details
 
     puts ""

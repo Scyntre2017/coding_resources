@@ -68,8 +68,9 @@ class CodingResources::Books
   end
 
   def details
-    CodingResources::Scraper.scrape_book_details(self.desc_url)
-    puts "Book details"
+    info = CodingResources::Scraper.scrape_book_details(self.desc_url)
+    self.long_desc = info.values_at(:long_desc).join
+    self.book_url = info.values_at(:book_url).join
   end
 
 end
