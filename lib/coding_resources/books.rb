@@ -73,9 +73,14 @@ class CodingResources::Books
     puts ""
     puts "Page #{page + 1}"
     puts ""
-    self.pages[page].each.with_index(1) do |book, i|
-      puts "#{i}. #{book.name}"
-      puts "#{book.short_desc}"
+    if self.pages[page] == nil
+      puts "No reults found."
+    else
+      binding.pry
+      self.pages[page].each.with_index(1) do |book, i|
+        puts "#{i}. #{book.name}"
+        puts "#{book.short_desc}"
+      end
     end
   end
 
@@ -87,8 +92,8 @@ class CodingResources::Books
     info = CodingResources::Scraper.scrape_book_details(self.desc_url)
     self.long_desc = info.values_at(:long_desc).join
     self.book_url = info.values_at(:book_url).join
-    puts "#{book.long_desc}"
-    puts "To download the book please go to this website: #{book.book_url}"
+    puts "#{self.long_desc}"
+    puts "To download the book please go to this website: #{self.book_url}"
   end
 
 end
