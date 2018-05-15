@@ -2,8 +2,8 @@ PATH
   remote: .
   specs:
     CodingResources (0.1.0)
-      nokogiri
-      require_all
+      nokogiri (~> 1.8.2)
+      require_all (~> 2)
 
 GEM
   remote: https://rubygems.org/
@@ -25,7 +25,7 @@ PLATFORMS
 DEPENDENCIES
   CodingResources!
   bundler (~> 1.16)
-  pry
+  pry (~> 0)
   rake (~> 10.0)
 
 BUNDLED WITH
