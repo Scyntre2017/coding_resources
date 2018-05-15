@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "coding_resources/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "CodingResources"
+  spec.name          = "coding_resources"
   spec.version       = CodingResources::VERSION
   spec.authors       = ["'Christopher Jones'"]
   spec.email         = ["'cjones999983@gmail.com'"]
