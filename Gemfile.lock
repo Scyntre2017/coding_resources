@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    coding_resources (0.1.0)
+    CodingResources (0.1.0)
       nokogiri
       require_all
 
@@ -61,9 +61,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  CodingResources!
   aruba
   bundler (~> 1.16)
-  coding_resources!
   cucumber
   pry
   rake (~> 10.0)
