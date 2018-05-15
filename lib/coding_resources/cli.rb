@@ -56,7 +56,7 @@ class CodingResources::CLI
         when 2
           @@page += 1
         when 3
-          @@page -= 1
+          @@page -= 1 unless @@page == 0
         when 4
           puts "Please enter 1-#{CodingResources::Books.pages.length} to go to that specific page."
           i = gets.strip.to_i
