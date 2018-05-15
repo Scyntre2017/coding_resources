@@ -1,6 +1,8 @@
 require "coding_resources"
 require "nokogiri"
 require "open-uri"
-require "require_all"
 
-require_all "lib"
+require_relative "coding_resources/cli"
+require_relative "coding_resources/books"
+require_relative "coding_resources/scraper"
+require_relative "coding_resources/version"
