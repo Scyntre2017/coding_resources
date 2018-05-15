@@ -20,8 +20,8 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.16"
   spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "pry"
+  spec.add_development_dependency "pry", '~> 0'
 
-  spec.add_runtime_dependency "nokogiri"
-  spec.add_runtime_dependency "require_all"
+  spec.add_runtime_dependency "nokogiri", '~> 0'
+  spec.add_runtime_dependency "require_all", '~> 0'
 end
