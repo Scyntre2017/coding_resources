@@ -17,10 +17,10 @@ And then execute:
 Or install it yourself as:
 
     $ gem install coding_resources
+    
+# Usage
 
-## Usage
-
-##After installation run gem by typing "coding_resources" into the terminal, then:
+## After installation run gem by typing "coding_resources" into the terminal, then:
 
 Type 1 to list all books.
 
@@ -28,7 +28,7 @@ Type 2 to search for a book.
 
 Type 3 to exit.
 
-##After listing or searching for a book:
+## After listing or searching for a book:
 
 Type 1 to get more details on a book.
 
@@ -42,7 +42,7 @@ Type 5 to search for a new book.
 
 Type 6 to exit.
 
-##After getting details on a specific book:
+## After getting details on a specific book:
 
 Type 1 to go back to the list of books.
 
