@@ -1,4 +1,3 @@
-require "coding_resources"
 require "nokogiri"
 require "open-uri"
 
