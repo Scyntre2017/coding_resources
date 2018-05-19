@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+require_relative "../Gemfile"
 require "bundler/setup"
 require "coding_resources"
 Bundler.require(:default, :development)
