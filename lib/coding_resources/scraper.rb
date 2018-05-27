@@ -3,7 +3,8 @@ class CodingResources::Scraper
   def self.scrape_all_books
     page = 0
     books = []
-    while page < 82
+    last_page = Nokogiri::HTML(open("http://www.freetechbooks.com/topics")).css(".pagination li")[-2].text.to_i + 1
+    while page < last_page
       page += 1
       doc = Nokogiri::HTML(open("http://www.freetechbooks.com/topics?page=#{page}"))
       doc.css(".media-body").each do |book|

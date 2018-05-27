@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    coding_resources (0.2.2)
+    coding_resources (0.2.5)
       nokogiri (~> 1.8.2)
 
 GEM
