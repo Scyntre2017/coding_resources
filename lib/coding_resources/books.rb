@@ -57,7 +57,6 @@ class CodingResources::Books
   def self.create_all_books
     book_array = CodingResources::Scraper.scrape_all_books
     self.create_from_collection(book_array)
-    self.create_pages("all_books")
   end
 
   def self.search(name)
@@ -65,7 +64,6 @@ class CodingResources::Books
     self.all.each do |book|
       @@searched_books << book if book.name.downcase.split(":").join.split(",").join.split.include?(name)
     end
-    self.create_pages("search")
   end
 
   def self.list(page)

@@ -3,12 +3,13 @@ class CodingResources::CLI
 @@page = 0
 
   def run
+    puts "Welcome to Coding Resources"
+    puts "Retrieving books..."
+    CodingResources::Books.create_all_books
     menu
   end
 
   def menu
-    CodingResources::Books.create_all_books
-    puts "Welcome to Coding Resources"
     puts "Please select an option"
     puts "1. List all books."
     puts "2. Search for a book."
@@ -18,6 +19,7 @@ class CodingResources::CLI
     if input > 0
       case input
       when 1
+        CodingResources::Books.create_pages("all_books")
         list
       when 2
         search
@@ -44,7 +46,8 @@ class CodingResources::CLI
         puts "3. Go back one page."
         puts "4. Go to a specific page."
         puts "5. Search for a book."
-        puts "6. Exit"
+        puts "6. Go back to the main menu"
+        puts "7. Exit"
         puts ""
 
         input = gets.strip.to_i
@@ -65,6 +68,9 @@ class CodingResources::CLI
           search
           break
         when 6
+          menu
+          break
+        when 7
           exit
         when input > 6 || input < 1
           puts "That was an invalid entry."
@@ -83,6 +89,7 @@ class CodingResources::CLI
     puts "Please enter the name or part of the name of the book you are searching for."
     input = gets.strip.downcase
     CodingResources::Books.search(input)
+    CodingResources::Books.create_pages("search")
     @@page = 0
     list
   end
