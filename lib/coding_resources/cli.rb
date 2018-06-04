@@ -101,8 +101,13 @@ class CodingResources::CLI
     input = gets.strip.to_i
     puts ""
 
-    book = CodingResources::Books.pages[@@page][input - 1]
-    book.details
+    if input > 0 && input <= CodingResources::Books.pages[@@page].length
+      book = CodingResources::Books.pages[@@page][input - 1]
+      book.details
+    else
+      puts "Please choose a different number."
+      details
+    end
 
     i = 0
     while i < 1 || i > 3
